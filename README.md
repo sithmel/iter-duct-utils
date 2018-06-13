@@ -7,7 +7,7 @@ logger
 It logs the current item.
 ```js
 {
-  template: 'Working on ${this._id}'
+  template: (obj) => 'Working on ${obj._id}'
 }
 ```
 

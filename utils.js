@@ -1,6 +1,6 @@
 function valueOrFunc(obj, func) {
   if (typeof func === 'function') {
-    return func(obk)
+    return func(obj)
   }
   return func
 }
