@@ -21,6 +21,7 @@
   "author": "Maurizio Lupo <maurizio.lupo@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "glob": "^7.1.2",
     "iter-tools": "^4.1.1",
     "lodash": "^4.17.10",
     "mongodb": "^3.0.10",

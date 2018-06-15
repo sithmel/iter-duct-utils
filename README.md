@@ -34,6 +34,33 @@ It reads a csv and returns an item for each row
 }
 ```
 
+map
+---
+It gets an input object and map into another
+```js
+(obj) => ({
+    item1: obj[0],
+    item2: obj[1],
+  })
+```
+
+filter
+------
+It filters objects from a sequence
+```js
+(obj) => (obj.prop === 10)
+```
+
+throttle
+--------
+It ensures that a sequence doesn't return more than one item for an interval of time.
+Note: the pipeline speed is already determined by the slowest item. This will slow down even more.
+```js
+{
+  ms: 100
+}
+```
+
 download
 --------
 It downloads a file
@@ -48,7 +75,7 @@ It downloads a file
 
 json-reader
 -----------
-It reads a json
+It reads json
 ```js
 {
   files: '*.json',
@@ -57,7 +84,7 @@ It reads a json
 
 json-writer
 -----------
-It writes a json
+It writes json
 ```js
 {
   filenames: '${this._id}.json',
