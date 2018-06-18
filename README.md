@@ -2,6 +2,19 @@ iter-duct-utils
 ---------------
 Useful pipeline segments for iter-duct.
 
+How to read the documentation
+-----------------------------
+For each segment there is a description, the type of segment (reader, transformer or writer) and the configuration.
+When specified "value or function", the config parameter can get a function that takes as argument the current item returned by the iterable.
+
+Types of segment
+----------------
+* Reader: it reads the data somewhere, it ignores the iterable in input
+* transformer: it takes the iterable in input and returns another as output
+* Writer: it writes the data somewhere
+
+All types returns an iterable, even the "writer" let the iterable in input pass through unchanged.
+
 logger
 ------
 It logs the current item.
@@ -87,6 +100,6 @@ json-writer
 It writes json
 ```js
 {
-  filenames: '${this._id}.json',
+  filename: '${this._id}.json',
 }
 ```

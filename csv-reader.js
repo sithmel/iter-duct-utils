@@ -4,7 +4,7 @@ const { valueOrFunc, splitCSVRow } = require('./utils')
 
 // {
 //   filename: 'test.csv'
-//   encoding: utf8
+//   encoding: 'utf8'
 // }
 
 function getCSVReader(cfg) {

@@ -19,4 +19,5 @@ function jsonReader(cfg) {
     }
   }
 }
+
 module.exports = jsonReader
