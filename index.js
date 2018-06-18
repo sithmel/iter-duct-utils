@@ -8,7 +8,6 @@ const slice = require('./slice')
 const jsonReader = require('./json-reader')
 const jsonWriter = require('./json-writer')
 
-
 module.exports = {
   logger,
   mongoReader,
