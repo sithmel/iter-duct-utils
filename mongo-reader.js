@@ -10,7 +10,7 @@ const { valueOrFunc } = require('./utils')
 //   query: { authorId: 2127200 }
 // }
 
-function getMongoReader(cfg) {
+function getMongoReader (cfg) {
   const user = encodeURIComponent(cfg.user)
   const password = encodeURIComponent(cfg.password)
   const authMechanism = 'SCRAM-SHA-1'// || 'DEFAULT';
@@ -18,17 +18,17 @@ function getMongoReader(cfg) {
   const host = cfg.host || 'localhost'
 
   const url = format('mongodb://%s:%s@%s:%s/?authMechanism=%s&authSource=resource',
-    user, password, host, port, authMechanism);
+    user, password, host, port, authMechanism)
 
   return async function * (iterable) {
-    let client;
+    let client
     try {
       client = await MongoClient.connect(url)
       const db = client.db(cfg.db)
       const collection = db.collection(cfg.collection)
       for await (const item of iterable || [{}]) {
         const cursor = collection.find(valueOrFunc(item, cfg.query) || {}) // .noCursorTimeout();
-        while(await cursor.hasNext()) {
+        while (await cursor.hasNext()) {
           const doc = await cursor.next()
           yield { ...item, doc }
         }

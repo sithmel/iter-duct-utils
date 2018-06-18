@@ -1,6 +1,6 @@
 const it = require('iter-tools/es2018')
 
-function filter({ func }) {
+function filter ({ func }) {
   return function (iterable) {
     return it.asyncFilter(func, iterable)
   }

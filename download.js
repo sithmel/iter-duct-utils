@@ -3,18 +3,18 @@ const fs = require('fs')
 const it = require('iter-tools/es2018')
 const { valueOrFunc } = require('./utils')
 
-function downloadFile(url, file) {
-  return new Promise((resolve, reject)=> {
+function downloadFile (url, file) {
+  return new Promise((resolve, reject) => {
     superagent
       .get(url)
-      .on('error', function(error) {
+      .on('error', function (error) {
         reject(error);
       })
       .pipe(fs.createWriteStream(file))
-      .on('finish', function() {
+      .on('finish', function () {
         resolve(file);
-      });
-    });
+      })
+  })
 }
 
 // {

@@ -1,13 +1,13 @@
 const it = require('iter-tools')
 
-function valueOrFunc(obj, func) {
+function valueOrFunc (obj, func) {
   if (typeof func === 'function') {
     return func(obj)
   }
   return func
 }
 
-function splitCSVRow(row) {
+function splitCSVRow (row) {
   const colSplitter = it.regexpExec(/(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g)
   const unwrapQuote = (field) => {
     const match = /^"?([^"]*)"?$/.exec(field)

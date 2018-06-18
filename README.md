@@ -1,6 +1,6 @@
 iter-duct-utils
 ---------------
-Useful pipeline segments for iter-duct.
+Useful pipeline segments for [iter-duct](https://github.com/tes/iter-duct).
 
 How to read the documentation
 -----------------------------

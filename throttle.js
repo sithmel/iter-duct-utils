@@ -1,6 +1,6 @@
 const it = require('iter-tools/es2018')
 
-function throttle(cfg) {
+function throttle (cfg) {
   return function (iterable) {
     if (cfg.ms) {
       return it.asyncThrottle(cfg.ms, iterable)

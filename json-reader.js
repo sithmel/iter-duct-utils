@@ -1,13 +1,12 @@
 const fs = require('fs')
 const { promisify } = require('util')
-const it = require('iter-tools/es2018')
 const glob = require('glob')
 const { valueOrFunc } = require('./utils')
 
 const readFile = promisify(fs.readFile)
 const globPromise = promisify(glob)
 
-function jsonReader(cfg) {
+function jsonReader (cfg) {
   return async function * (iterable) {
     for await (const item of iterable || [{}]) {
       const path = valueOrFunc(item, cfg.path)
