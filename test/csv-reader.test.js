@@ -5,13 +5,12 @@ const itools = require('iter-tools')
 const { splitCSVRow } = require('../utils')
 const csvReader = require('../csv-reader')
 
-
 describe('splitCSVRow', () => {
-  it('works simple case',() => {
+  it('works simple case', () => {
     assert.deepEqual(splitCSVRow('a,b,c'), ['a', 'b', 'c'])
   })
 
-  it('works with comma and quotes',() => {
+  it('works with comma and quotes', () => {
     assert.deepEqual(splitCSVRow('a,"b,c","c"'), ['a', 'b,c', 'c'])
   })
 })
