@@ -8,4 +8,5 @@ function throttle(cfg) {
     return iterable
   }
 }
+
 module.exports = throttle

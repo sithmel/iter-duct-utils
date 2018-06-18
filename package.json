@@ -17,7 +17,7 @@
     "async",
     "pipeline"
   ],
-  "repository": "git@github.com:tes/iter-duct-tools.git",
+  "repository": "git@github.com:tes/iter-duct-utils.git",
   "author": "Maurizio Lupo <maurizio.lupo@gmail.com>",
   "license": "MIT",
   "dependencies": {
