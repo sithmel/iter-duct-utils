@@ -22,8 +22,8 @@ describe('json-writer', () => {
   it('works simple case', async () => {
     const writer = jsonWriter({ filename: (item) => `${item.id}.json` })
     const iterable = [
-      { id: 'test1', name: 'Maurizio'},
-      { id: 'test2', name: 'Fernando'}
+      { id: 'test1', name: 'Maurizio' },
+      { id: 'test2', name: 'Fernando' }
     ]
     const results = await itools.asyncIterToArray(writer(iterable))
     assert.deepEqual(results, iterable)
