@@ -7,6 +7,8 @@ const map = require('./map')
 const slice = require('./slice')
 const jsonReader = require('./json-reader')
 const jsonWriter = require('./json-writer')
+const getJSON = require('./get-json')
+const postJSON = require('./post-json')
 
 module.exports = {
   logger,
@@ -17,5 +19,7 @@ module.exports = {
   map,
   slice,
   jsonReader,
-  jsonWriter
+  jsonWriter,
+  getJSON,
+  postJSON
 }

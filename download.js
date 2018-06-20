@@ -1,21 +1,5 @@
-const superagent = require('superagent')
-const fs = require('fs')
 const it = require('iter-tools/es2018')
-const { valueOrFunc } = require('./utils')
-
-function downloadFile (url, file) {
-  return new Promise((resolve, reject) => {
-    superagent
-      .get(url)
-      .on('error', function (error) {
-        reject(error);
-      })
-      .pipe(fs.createWriteStream(file))
-      .on('finish', function () {
-        resolve(file);
-      })
-  })
-}
+const { valueOrFunc, downloadFile } = require('./utils')
 
 // {
 //   skipExisting: false
@@ -33,7 +17,8 @@ function getDownload({ skipExisting, url, filename, concurrency }) {
       if (skipExisting && fs.existsSync(currentFile)) {
         return
       }
-      return downloadFile(currentUrl, currentFile)
+      await downloadFile(currentUrl, currentFile)
+      return obj
     })
     return downloadInParallel(iterable)
   }

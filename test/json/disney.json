@@ -1,24 +1,12 @@
-{
-  "disney": [
-    {
-      "name": "Mickey Mouse",
-      "type": "mouse",
-      "gender": "male"
-    },
-    {
-      "name": "Minnie Mouse",
-      "type": "mouse",
-      "gender": "female"
-    },
-    {
-      "name": "Goofy",
-      "type": "dog",
-      "gender": "male"
-    },
-    {
-      "name": "Paperino",
-      "type": "duck",
-      "gender": "male"
-    }
-  ]
-}
+[
+  {
+    "name": "Mickey Mouse",
+    "type": "mouse",
+    "gender": "male"
+  },
+  {
+    "name": "Minnie Mouse",
+    "type": "mouse",
+    "gender": "female"
+  }
+]

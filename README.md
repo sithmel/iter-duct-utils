@@ -73,10 +73,26 @@ download
 --------
 **type**: writer
 It downloads a file for each iterable.
-* url: **value or string**
-* filename: '**value or string**
+* url: **string or function**
+* filename: '**string or function**
 * skipExisting: (default false)
 * concurrency: (default 4)
+
+getJSON
+-------
+**type**: reader
+It reads a json from an url and push it into the pipeline
+* url: **string or function**
+* concurrency: (default 4)
+
+postJSON
+--------
+**type**: reader
+It writes a json
+* url: **string or function**
+* payload: **object or function**
+* concurrency: (default 4)
+* method: (default 'POST')
 
 json-reader
 -----------

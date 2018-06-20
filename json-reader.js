@@ -9,7 +9,7 @@ const globPromise = promisify(glob)
 function jsonReader (cfg) {
   return async function * (iterable) {
     for await (const item of iterable || [{}]) {
-      const path = valueOrFunc(item, cfg.path)
+      const path = valueOrFunc(item, cfg.files)
       const files = await globPromise(path)
       for (const file of files) {
         const fileContent = await readFile(file, 'utf8')

@@ -1,12 +1,10 @@
-{
-  "superheroes": [
-    {
-      "name": "Superman",
-      "superpower": "flying, super strenght"
-    },
-    {
-      "name": "Batman",
-      "superpower": false
-    }
-  ]
-}
+[
+  {
+    "name": "Superman",
+    "superpower": "flying, super strenght"
+  },
+  {
+    "name": "Batman",
+    "superpower": false
+  }
+]
