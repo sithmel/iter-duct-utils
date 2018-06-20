@@ -2,7 +2,7 @@ const it = require('iter-tools')
 const { valueOrFunc } = require('./utils')
 
 // {
-//   template: (obj) => 'Working on ${obj._id}'
+//   template: (obj) => `Working on ${obj._id}`
 // }
 
 function getLogger (cfg) {
