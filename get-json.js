@@ -12,7 +12,7 @@ function getJSONData({ url, concurrency }) {
     const getInParallel = it.asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const payload = await getJSON(currentUrl)
-      return { ...obj, payload }
+      return payload
 
     })
     return getInParallel(iterable)

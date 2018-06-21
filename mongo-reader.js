@@ -30,7 +30,7 @@ function getMongoReader (cfg) {
         const cursor = collection.find(valueOrFunc(item, cfg.query) || {}) // .noCursorTimeout();
         while (await cursor.hasNext()) {
           const doc = await cursor.next()
-          yield { ...item, doc }
+          yield doc
         }
       }
     } catch (e) {

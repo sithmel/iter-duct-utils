@@ -124,3 +124,27 @@ will return:
 [16, 8]
 [36, 12]
 ```
+
+tricks
+======
+Multiplex can be useful if you can run multiple migration segment at the same time:
+
+```js
+multiplex(getJSON({ ... }), jsonWriter({ ... }))
+```
+or you can use passthrough to retain the original iterable:
+```js
+multiplex(getJSON({ ... }), passThrough()),
+map({ func: (pair) => ({
+  ...pair[0], id: pair[1].id // I want to reuse the id from the original iterable
+})})
+```
+
+If you want you can start your pipeline with any function that returns an iterable (synchronous or asynchronous):
+```js
+[
+  () => [1, 2, 3, 4],
+  getJSON({ url: (item) => `http://www.archive.com/item${item}`}),
+  JSONWriter({ filename: (item) => `${item.id}.json`  })
+]
+```
