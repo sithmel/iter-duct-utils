@@ -9,6 +9,7 @@ const jsonReader = require('./json-reader')
 const jsonWriter = require('./json-writer')
 const getJSON = require('./get-json')
 const postJSON = require('./post-json')
+const passThrough = require('./pass-through')
 
 module.exports = {
   logger,
@@ -21,5 +22,6 @@ module.exports = {
   jsonReader,
   jsonWriter,
   getJSON,
-  postJSON
+  postJSON,
+  passThrough
 }

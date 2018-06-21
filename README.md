@@ -105,3 +105,22 @@ json-writer
 **type**: writer
 It writes a json file for each item.
 * filename: json path name **value or string**
+
+pass-through
+------------
+**type**: NA
+This is a special segment that returns exactly what it gets in input
+
+multiplex
+---------
+**type**: NA
+This special segment combines different segments and zip the results together:
+```js
+multiplex(map({ func: (item) => item * item }), map({ func: (item) => item * 2 }))
+```
+will return:
+```js
+[4, 4]
+[16, 8]
+[36, 12]
+```
