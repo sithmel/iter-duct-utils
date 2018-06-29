@@ -84,8 +84,8 @@ csv-reader
 ----------
 **type**: reader
 
-It reads a csv and returns an item for each row (as array of array).
-It often requires a "map" segment to map the array to an object.
+It reads a csv and returns an item for each row (as array of objects).
+It can take all options of fast-csv: https://www.npmjs.com/package/fast-csv
 
 * filename: the csv file name, example 'file.csv' **string**
 * encoding: CSV encoding. It defaults to utf8 **string**
