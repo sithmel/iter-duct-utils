@@ -1,5 +1,4 @@
 const fs = require('fs')
-const it = require('iter-tools/es2018')
 const csv = require('fast-csv')
 
 // {

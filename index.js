@@ -11,7 +11,6 @@ const readfile = require('./readfile')
 const exec = require('./exec')
 const multiplex = require('./multiplex')
 
-
 module.exports = {
   logger,
   mongoReader,

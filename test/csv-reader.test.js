@@ -9,7 +9,7 @@ describe('csv-reader', () => {
     const reader = csvReader({
       filename: path.join(__dirname, 'superheroes.csv'),
       headers: true,
-      ignoreEmpty: true,
+      ignoreEmpty: true
     })
     assert.deepEqual(await itools.asyncIterToArray(reader()), [
       {

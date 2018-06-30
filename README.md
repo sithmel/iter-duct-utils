@@ -137,6 +137,26 @@ It writes a json file for each item.
 
 * filename: json path name **value or string**
 
+readfile
+--------
+**type**: reader
+
+It reads a file and either split it or return matches
+
+* filename: path name **value or string**
+* split: regexp to split the text **regexp**
+* extract: regexp to extract text from a file **regexp**
+
+exec
+----
+**type**: reader
+
+It runs a command and reads standard output, then it either split it or return matches:
+
+* cmd: command to run **value or string**
+* split: regexp to split the output **regexp**
+* extract: regexp to extract text from the output **regexp**
+
 pass-through
 ------------
 **type**: special

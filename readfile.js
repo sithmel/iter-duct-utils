@@ -1,6 +1,5 @@
 const fs = require('fs')
 const it = require('iter-tools/es2018')
-const { spawn } = require('child_process')
 const { valueOrFunc } = require('./utils')
 
 // {
@@ -9,12 +8,12 @@ const { valueOrFunc } = require('./utils')
 //   split: ' '
 // }
 
-function getExtractor(cfg) {
-  if (cfg.extract) {
-    return it.asyncRegexpExecIter(cfg.extract)
+function getExtractor ({ extract, split }) {
+  if (extract) {
+    return it.asyncRegexpExecIter(extract)
   }
-  if (cfg.split) {
-    return it.asyncRegexpSplitIter(cfg.split)
+  if (split) {
+    return it.asyncRegexpSplitIter(split)
   }
   return it.asyncSplitLines
 }

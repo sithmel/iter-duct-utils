@@ -1,4 +1,3 @@
-const it = require('iter-tools')
 const fs = require('fs')
 const superagent = require('superagent')
 
@@ -7,11 +6,11 @@ function downloadFile (url, file) {
     superagent
       .get(url)
       .on('error', function (error) {
-        reject(error);
+        reject(error)
       })
       .pipe(fs.createWriteStream(file))
       .on('finish', function () {
-        resolve();
+        resolve()
       })
   })
 }
