@@ -80,6 +80,35 @@ If this receives an iterable, it can run a "find" query for each item.
 * db: database name, example 'resource' **string**
 * query: find query, example{ authorId: 123 } **object or function**
 
+mongo-update
+------------
+**type**: writer
+
+It updates a document in a mongo collection (using collection.updateOne from the [mongodb](https://www.npmjs.com/package/mongodb) library). It returns the same object.
+
+* host: mongo host, example 'mongodb01-az1.live.xxx.com' **string**
+* user: example 'resource_xxx' **string**
+* password: example: 'xxx' **string**
+* collection: collection name, example 'resources' **string**
+* db: database name, example 'resource' **string**
+* query: find query, example{ authorId: 123 } **object or function**
+* doc: an object containing the fields to update **object or function**
+* options: options for the "updateOne" method **object or function**
+
+mongo-insert
+------------
+**type**: writer
+
+It adds a document in a mongo collection (using collection.insertOne from the [mongodb](https://www.npmjs.com/package/mongodb) library). It returns the same object.
+
+* host: mongo host, example 'mongodb01-az1.live.xxx.com' **string**
+* user: example 'resource_xxx' **string**
+* password: example: 'xxx' **string**
+* collection: collection name, example 'resources' **string**
+* db: database name, example 'resource' **string**
+* doc: an object containing the fields to update **object or function**
+* options: options for the "insertOne" method **object or function**
+
 csv-reader
 ----------
 **type**: reader
