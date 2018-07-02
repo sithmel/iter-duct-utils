@@ -137,18 +137,20 @@ getJSON
 It reads a json from an url and push it into the pipeline
 
 * url: **string or function**
+* headers: HTTP headers **object or function**
 * concurrency: (default 4)
 
 postJSON
 --------
 **type**: reader
 
-It writes a json
+It writes a json and push the result into the pipline
 
 * url: **string or function**
 * payload: **object or function**
+* headers: HTTP headers **object or function**
+* method: (default 'POST') **string**
 * concurrency: (default 4)
-* method: (default 'POST')
 
 json-reader
 -----------

@@ -15,15 +15,17 @@ function downloadFile (url, file) {
   })
 }
 
-function getJSON (url) {
+function getJSON (url, headers = {}) {
   return superagent
     .get(url)
+    .set(headers)
     .then((res) => res.body)
 }
 
-function postJSON (url, payload, method = 'POST') {
+function postJSON (url, payload, method = 'POST', headers = {}) {
   return superagent(method, url)
     .send(payload)
+    .set(headers)
     .then((res) => res.body)
 }
 
