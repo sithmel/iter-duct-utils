@@ -26,9 +26,16 @@ function getMongoUpdate (cfg) {
       client = await MongoClient.connect(url)
       const db = client.db(cfg.db)
       const collection = db.collection(cfg.collection)
-      for await (const item of iterable) {
-        await collection.updateOne(valueOrFunc(item, cfg.query), valueOrFunc(item, cfg.doc), valueOrFunc(item, cfg.options))
-        yield item
+      if (batchSize in cfg) {
+        for await (const items of it.asyncBatch(cfg.batchSize, iterable)) {
+          await collection.updateMany(valueOrFunc(item, cfg.query), items, cfg.options)
+          yield * items
+        }
+      } else {
+        for await (const item of iterable) {
+          await collection.updateOne(valueOrFunc(item, cfg.query), item, cfg.options)
+          yield item
+        }
       }
     } catch (e) {
       console.log(e.stack)

@@ -1,6 +1,8 @@
 const MongoClient = require('mongodb').MongoClient
 const format = require('util').format
 const { valueOrFunc } = require('./utils')
+const it = require('iter-tools')
+
 // {
 //   host: 'mongodb01-az1.live.xxx.com',
 //   user: 'resourcexxx',
@@ -27,9 +29,16 @@ function getMongoUpdate (cfg) {
       client = await MongoClient.connect(url)
       const db = client.db(cfg.db)
       const collection = db.collection(cfg.collection)
-      for await (const item of iterable) {
-        await collection.insertOne(valueOrFunc(item, cfg.doc), valueOrFunc(item, cfg.options))
-        yield item
+      if (batchSize in cfg) {
+        for await (const items of it.asyncBatch(cfg.batchSize, iterable)) {
+          await collection.insertMany(items, cfg.options)
+          yield * items
+        }
+      } else {
+        for await (const item of iterable) {
+          await collection.insertOne(item, cfg.options)
+          yield item
+        }
       }
     } catch (e) {
       console.log(e.stack)
