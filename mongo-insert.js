@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 const format = require('util').format
-const { valueOrFunc } = require('./utils')
+const { valueOrFunc, getMongoClient } = require('./utils')
 const it = require('iter-tools')
 
 // {
@@ -14,19 +14,10 @@ const it = require('iter-tools')
 // }
 
 function getMongoUpdate (cfg) {
-  const user = encodeURIComponent(cfg.user)
-  const password = encodeURIComponent(cfg.password)
-  const authMechanism = 'SCRAM-SHA-1'// || 'DEFAULT';
-  const port = cfg.port || '27017'
-  const host = cfg.host || 'localhost'
-
-  const url = format('mongodb://%s:%s@%s:%s/?authMechanism=%s&authSource=resource',
-    user, password, host, port, authMechanism)
-
   return async function * (iterable) {
     let client
     try {
-      client = await MongoClient.connect(url)
+      client = await getMongoClient(cfg)
       const db = client.db(cfg.db)
       const collection = db.collection(cfg.collection)
       if (batchSize in cfg) {

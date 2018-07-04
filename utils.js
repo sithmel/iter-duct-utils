@@ -1,6 +1,8 @@
 const fs = require('fs')
 const it = require('iter-tools/es2018')
 const superagent = require('superagent')
+const MongoClient = require('mongodb').MongoClient
+const format = require('util').format
 
 function downloadFile (url, file) {
   return new Promise((resolve, reject) => {
@@ -44,10 +46,24 @@ async function * asyncMapBatch (number, func, iterable) {
   }
 }
 
+function getMongoClient(cfg) {
+  const user = encodeURIComponent(cfg.user)
+  const password = encodeURIComponent(cfg.password)
+  const userPass = user ? `${user}:${password}@` : ''
+  const authMechanism = 'SCRAM-SHA-1'// || 'DEFAULT';
+  const port = cfg.port || '27017'
+  const host = cfg.host || 'localhost'
+
+  const url = `mongodb://${userPass}@${host}:${port}/?authMechanism=${authMechanism}&authSource=resource`
+
+  return MongoClient.connect(url)
+}
+
 module.exports = {
   valueOrFunc,
   downloadFile,
   getJSON,
   postJSON,
-  asyncMapBatch
+  asyncMapBatch,
+  getMongoClient
 }
