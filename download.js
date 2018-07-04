@@ -1,6 +1,6 @@
 const fs = require('fs')
 const it = require('iter-tools/es2018')
-const { valueOrFunc, downloadFile } = require('./utils')
+const { valueOrFunc, downloadFile, asyncMapBatch } = require('./utils')
 // {
 //   skipExisting: false
 //   url: 'http://www.example.com/resource/${this._id}/bundle'
@@ -11,7 +11,7 @@ const { valueOrFunc, downloadFile } = require('./utils')
 function getDownload ({ skipExisting, url, filename, concurrency }) {
   concurrency = concurrency || 4
   return function (iterable) {
-    const downloadInParallel = it.asyncMapBatch(concurrency, async (obj) => {
+    const downloadInParallel = asyncMapBatch(concurrency, async (obj) => {
       const currentFile = valueOrFunc(obj, filename)
       const currentUrl = valueOrFunc(obj, url)
       if (skipExisting && fs.existsSync(currentFile)) {

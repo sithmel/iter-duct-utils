@@ -24,7 +24,6 @@
     "fast-csv": "^2.4.1",
     "glob": "^7.1.2",
     "iter-tools": "^5.0.4",
-    "lodash": "^4.17.10",
     "mongodb": "^3.0.10",
     "superagent": "^3.8.3"
   },

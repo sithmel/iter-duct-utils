@@ -1,5 +1,5 @@
 const it = require('iter-tools/es2018')
-const { valueOrFunc, postJSON } = require('./utils')
+const { valueOrFunc, postJSON, asyncMapBatch } = require('./utils')
 
 // {
 //   url: 'http://www.example.com/resource/${this._id}/bundle'
@@ -9,7 +9,7 @@ const { valueOrFunc, postJSON } = require('./utils')
 function postJSONData ({ url, concurrency, payload, method, headers }) {
   concurrency = concurrency || 4
   return function (iterable) {
-    const postInParallel = it.asyncMapBatch(concurrency, async (obj) => {
+    const postInParallel = asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const currentPayload = valueOrFunc(obj, payload)
       const currentHeaders = valueOrFunc(obj, headers)

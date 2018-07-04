@@ -1,4 +1,5 @@
 const fs = require('fs')
+const it = require('iter-tools/es2018')
 const superagent = require('superagent')
 
 function downloadFile (url, file) {
@@ -36,9 +37,17 @@ function valueOrFunc (obj, func) {
   return func
 }
 
+async function * asyncMapBatch (number, func, iterable) {
+  for await (const items of it.asyncBatch(number, iterable)) {
+    const results = await Promise.all(it.map(func, items))
+    yield * results
+  }
+}
+
 module.exports = {
   valueOrFunc,
   downloadFile,
   getJSON,
-  postJSON
+  postJSON,
+  asyncMapBatch
 }

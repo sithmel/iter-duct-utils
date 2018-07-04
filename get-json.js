@@ -1,5 +1,5 @@
 const it = require('iter-tools/es2018')
-const { valueOrFunc, getJSON } = require('./utils')
+const { valueOrFunc, getJSON, asyncMapBatch } = require('./utils')
 
 // {
 //   url: 'http://www.example.com/resource/${this._id}/bundle'
@@ -9,7 +9,7 @@ const { valueOrFunc, getJSON } = require('./utils')
 function getJSONData ({ url, concurrency, headers }) {
   concurrency = concurrency || 4
   return function (iterable) {
-    const getInParallel = it.asyncMapBatch(concurrency, async (obj) => {
+    const getInParallel = asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const payload = await getJSON(currentUrl, headers)
       return payload
