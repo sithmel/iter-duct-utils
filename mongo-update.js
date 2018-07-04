@@ -17,7 +17,7 @@ function getMongoUpdate (cfg) {
       client = await getMongoClient(cfg)
       const db = client.db(cfg.db)
       const collection = db.collection(cfg.collection)
-      if (batchSize in cfg) {
+      if ('batchSize' in cfg) {
         for await (const items of it.asyncBatch(cfg.batchSize, iterable)) {
           await collection.updateMany(valueOrFunc(item, cfg.query), items, cfg.options)
           yield * items
