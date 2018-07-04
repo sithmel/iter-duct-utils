@@ -22,12 +22,12 @@ function getMongoUpdate (cfg) {
       const collection = db.collection(cfg.collection)
       if ('batchSize' in cfg) {
         for await (const items of it.asyncBatch(cfg.batchSize, iterable)) {
-          await collection.insertMany(items, cfg.options)
+          await collection.insertMany(valueOrFunc(items, cfg.doc), valueOrFunc(items, cfg.options))
           yield * items
         }
       } else {
         for await (const item of iterable) {
-          await collection.insertOne(item, cfg.options)
+          await collection.insertOne(valueOrFunc(item, cfg.doc), valueOrFunc(item, cfg.options))
           yield item
         }
       }

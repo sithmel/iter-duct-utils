@@ -19,12 +19,12 @@ function getMongoUpdate (cfg) {
       const collection = db.collection(cfg.collection)
       if ('batchSize' in cfg) {
         for await (const items of it.asyncBatch(cfg.batchSize, iterable)) {
-          await collection.updateMany(valueOrFunc(item, cfg.query), items, cfg.options)
+          await collection.updateMany(valueOrFunc(items, cfg.query), valueOrFunc(items, cfg.doc), valueOrFunc(items, cfg.options))
           yield * items
         }
       } else {
         for await (const item of iterable) {
-          await collection.updateOne(valueOrFunc(item, cfg.query), item, cfg.options)
+          await collection.updateOne(valueOrFunc(item, cfg.query), valueOrFunc(item, cfg.doc),  valueOrFunc(item, cfg.options))
           yield item
         }
       }
