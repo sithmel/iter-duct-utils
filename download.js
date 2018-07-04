@@ -11,7 +11,7 @@ const { valueOrFunc, downloadFile, asyncMapBatch } = require('./utils')
 function getDownload ({ skipExisting, url, filename, concurrency }) {
   concurrency = concurrency || 4
   return function (iterable) {
-    const downloadInParallel = asyncMapBatch(concurrency, async (obj) => {
+    return asyncMapBatch(concurrency, async (obj) => {
       const currentFile = valueOrFunc(obj, filename)
       const currentUrl = valueOrFunc(obj, url)
       if (skipExisting && fs.existsSync(currentFile)) {
@@ -19,8 +19,7 @@ function getDownload ({ skipExisting, url, filename, concurrency }) {
       }
       await downloadFile(currentUrl, currentFile)
       return obj
-    })
-    return downloadInParallel(iterable)
+    }, iterable)
   }
 }
 

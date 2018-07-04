@@ -9,13 +9,12 @@ const { valueOrFunc, postJSON, asyncMapBatch } = require('./utils')
 function postJSONData ({ url, concurrency, payload, method, headers }) {
   concurrency = concurrency || 4
   return function (iterable) {
-    const postInParallel = asyncMapBatch(concurrency, async (obj) => {
+    return asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const currentPayload = valueOrFunc(obj, payload)
       const currentHeaders = valueOrFunc(obj, headers)
       return postJSON(currentUrl, currentPayload, method, currentHeaders)
-    })
-    return postInParallel(iterable)
+    }, iterable)
   }
 }
 

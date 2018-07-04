@@ -9,12 +9,11 @@ const { valueOrFunc, getJSON, asyncMapBatch } = require('./utils')
 function getJSONData ({ url, concurrency, headers }) {
   concurrency = concurrency || 4
   return function (iterable) {
-    const getInParallel = asyncMapBatch(concurrency, async (obj) => {
+    return asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const payload = await getJSON(currentUrl, headers)
       return payload
-    })
-    return getInParallel(iterable)
+    }, iterable)
   }
 }
 
