@@ -1,5 +1,5 @@
 const fs = require('fs')
-const csv = require('fast-csv')
+const csv = require('csv-parse')
 
 // {
 //   filename: 'test.csv'
