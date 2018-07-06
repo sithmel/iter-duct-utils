@@ -2,7 +2,6 @@ const fs = require('fs')
 const it = require('iter-tools/es2018')
 const superagent = require('superagent')
 const MongoClient = require('mongodb').MongoClient
-const format = require('util').format
 
 function downloadFile (url, file) {
   return new Promise((resolve, reject) => {
@@ -46,7 +45,7 @@ async function * asyncMapBatch (number, func, iterable) {
   }
 }
 
-function getMongoClient(cfg) {
+function getMongoClient (cfg) {
   const user = encodeURIComponent(cfg.user)
   const password = encodeURIComponent(cfg.password)
   const userPass = user ? `${user}:${password}@` : ''

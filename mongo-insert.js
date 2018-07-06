@@ -1,5 +1,3 @@
-const MongoClient = require('mongodb').MongoClient
-const format = require('util').format
 const { valueOrFunc, getMongoClient } = require('./utils')
 const it = require('iter-tools')
 

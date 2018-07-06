@@ -1,5 +1,3 @@
-const MongoClient = require('mongodb').MongoClient
-const format = require('util').format
 const { valueOrFunc, getMongoClient } = require('./utils')
 // {
 //   host: 'mongodb01-az1.live.xxx.com',

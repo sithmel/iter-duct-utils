@@ -4,7 +4,7 @@
   "description": "",
   "main": "index",
   "scripts": {
-    "lint": "eslint --fix --ext .js ./src ./test",
+    "lint": "eslint --fix --ext .js ./*.js ./test",
     "test": "mocha",
     "watch": "npm run test -- -w",
     "precommit": "npm run lint",

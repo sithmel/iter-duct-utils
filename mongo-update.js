@@ -1,6 +1,6 @@
-const MongoClient = require('mongodb').MongoClient
-const format = require('util').format
 const { valueOrFunc, getMongoClient } = require('./utils')
+const it = require('iter-tools/es2018')
+
 // {
 //   host: 'mongodb01-az1.live.xxx.com',
 //   user: 'resourcexxx',
@@ -24,7 +24,7 @@ function getMongoUpdate (cfg) {
         }
       } else {
         for await (const item of iterable) {
-          await collection.updateOne(valueOrFunc(item, cfg.query), valueOrFunc(item, cfg.doc),  valueOrFunc(item, cfg.options))
+          await collection.updateOne(valueOrFunc(item, cfg.query), valueOrFunc(item, cfg.doc), valueOrFunc(item, cfg.options))
           yield item
         }
       }

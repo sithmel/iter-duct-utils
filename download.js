@@ -1,5 +1,4 @@
 const fs = require('fs')
-const it = require('iter-tools/es2018')
 const { valueOrFunc, downloadFile, asyncMapBatch } = require('./utils')
 // {
 //   skipExisting: false

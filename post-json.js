@@ -1,4 +1,3 @@
-const it = require('iter-tools/es2018')
 const { valueOrFunc, postJSON, asyncMapBatch } = require('./utils')
 
 // {
