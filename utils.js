@@ -53,8 +53,7 @@ function getMongoClient (cfg) {
   const port = cfg.port || '27017'
   const host = cfg.host || 'localhost'
 
-  const url = `mongodb://${userPass}@${host}:${port}/?authMechanism=${authMechanism}&authSource=resource`
-
+  const url = `mongodb://${userPass}${host}:${port}/?authMechanism=${authMechanism}&authSource=resource`
   return MongoClient.connect(url)
 }
 
