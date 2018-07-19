@@ -77,6 +77,7 @@ If this receives an iterable, it can run a "find" query for each item.
 * user: example 'resource_xxx' **string**
 * password: example: 'xxx' **string**
 * collection: collection name, example 'resources' **string**
+* authDb: db used for authentication **string**
 * db: database name, example 'resource' **string**
 * query: find query, example{ authorId: 123 } **object or function**
 
@@ -91,6 +92,7 @@ It updates a document in a mongo collection (using collection.updateOne from the
 * password: example: 'xxx' **string**
 * collection: collection name, example 'resources' **string**
 * db: database name, example 'resource' **string**
+* authDb: db used for authentication **string**
 * query: find query, example{ authorId: 123 } **object or function**
 * doc: an object containing the fields to update **object or function**
 * options: options for the "updateOne" method **object or function**
@@ -106,6 +108,7 @@ It adds a document in a mongo collection (using collection.insertOne from the [m
 * password: example: 'xxx' **string**
 * collection: collection name, example 'resources' **string**
 * db: database name, example 'resource' **string**
+* authDb: db used for authentication **string**
 * doc: an object containing the fields to update **object or function**
 * options: options for the "insertOne" method **object or function**
 
