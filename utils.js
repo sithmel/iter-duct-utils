@@ -52,8 +52,9 @@ function getMongoClient (cfg) {
   const authMechanism = 'SCRAM-SHA-1'// || 'DEFAULT';
   const port = cfg.port || '27017'
   const host = cfg.host || 'localhost'
+  const authDb = cfg.authDb || 'admin'
 
-  const url = `mongodb://${userPass}${host}:${port}/?authMechanism=${authMechanism}&authSource=resource`
+  const url = `mongodb://${userPass}${host}:${port}/?authMechanism=${authMechanism}&authSource=${authDb}`
   return MongoClient.connect(url)
 }
 
