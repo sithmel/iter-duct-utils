@@ -9,6 +9,7 @@ const jsonReader = require('./json-reader')
 const jsonWriter = require('./json-writer')
 const getJSON = require('./get-json')
 const postJSON = require('./post-json')
+const postForm = require('./post-form')
 const readfile = require('./readfile')
 const exec = require('./exec')
 
@@ -22,6 +23,7 @@ module.exports = {
   jsonWriter,
   getJSON,
   postJSON,
+  postForm,
   readfile,
   exec,
   mongoUpdate,

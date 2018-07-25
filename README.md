@@ -156,7 +156,7 @@ It reads a json from an url and push it into the pipeline
 
 postJSON
 --------
-**type**: reader
+**type**: writer
 
 It writes a json and push the result into the pipline
 
@@ -165,6 +165,38 @@ It writes a json and push the result into the pipline
 * headers: HTTP headers **object or function**
 * method: (default 'POST') **string**
 * concurrency: (default 4)
+
+postForm
+--------
+**type**: writer
+
+It writes a file to an endpoint (uses multipart/formdata).
+
+* url: **string or function**
+* formData: **object or function**
+* headers: HTTP headers **object or function**
+* method: (default 'POST') **string**
+* concurrency: (default 4)
+
+formData should return an array of objects with this shape:
+```js
+[
+  {
+    name: 'field1',
+    value: 'xxx'
+  },
+  {
+    name: 'field2',
+    value: 'yyy'
+  },
+  {
+    name: 'file',
+    value: path.join(__dirname, './test.jpg'),
+    options: { contentType: 'image/jpeg', filename: 'test.jpg' },
+    attachment: true
+  }
+]
+```
 
 json-reader
 -----------

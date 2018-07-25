@@ -31,6 +31,24 @@ function postJSON (url, payload, method = 'POST', headers = {}) {
     .then((res) => res.body)
 }
 
+function postForm (url, formData, method = 'POST', headers = {}) {
+  const request = superagent(method, url)
+    .set(headers)
+    .accept('application/json')
+
+  for (const { attachment, name, value, options } of formData) {
+    if (attachment) {
+      request
+        .attach(name, value, options)
+    } else {
+      request
+        .field(name, value)
+    }
+  }
+  return request
+    .then((res) => res.body)
+}
+
 function valueOrFunc (obj, func) {
   if (typeof func === 'function') {
     return func(obj)
@@ -64,5 +82,6 @@ module.exports = {
   getJSON,
   postJSON,
   asyncMapBatch,
-  getMongoClient
+  getMongoClient,
+  postForm
 }
