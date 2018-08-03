@@ -1,5 +1,6 @@
 const fs = require('fs')
 const csv = require('csv-parse')
+const { getLogger } = require('iter-duct')
 
 // {
 //   filename: 'test.csv'
@@ -7,9 +8,18 @@ const csv = require('csv-parse')
 // }
 
 function getCSVReader (cfg) {
-  return function (iterable) {
-    const readStream = fs.createReadStream(cfg.filename, { encoding: cfg.encoding || 'utf8', highWaterMark: 1024 })
-    return readStream.pipe(csv(cfg))
+  const logger = getLogger()
+  return async function * (iterable) {
+    try {
+      const readStream = fs.createReadStream(cfg.filename, { encoding: cfg.encoding || 'utf8', highWaterMark: 1024 })
+      const iterable = readStream.pipe(csv(cfg))
+      for await (const item of iterable) {
+        yield item
+      }
+    } catch (error) {
+      logger.log({ level: 'error', message: 'error reading csv', error })
+      throw error
+    }
   }
 }
 

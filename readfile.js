@@ -1,6 +1,7 @@
 const fs = require('fs')
 const it = require('iter-tools/es2018')
 const { valueOrFunc } = require('./utils')
+const { getLogger } = require('iter-duct')
 
 // {
 //   filename:
@@ -19,12 +20,18 @@ function getExtractor ({ extract, split }) {
 }
 
 function readfile (cfg) {
+  const logger = getLogger()
   return async function * (iterable) {
     for await (const obj of iterable || [{}]) {
       const filename = valueOrFunc(obj, cfg.filename)
-      const stream = fs.createReadStream(filename, { encoding: cfg.encoding || 'utf8', highWaterMark: cfg.highWaterMark || 1024 })
-      const extractor = getExtractor(cfg)
-      yield * extractor(stream)
+      try {
+        const stream = fs.createReadStream(filename, { encoding: cfg.encoding || 'utf8', highWaterMark: cfg.highWaterMark || 1024 })
+        const extractor = getExtractor(cfg)
+        yield * extractor(stream)
+      } catch (error) {
+        logger.log({ level: 'error', message: `error reading file ${filename}`, error, item: obj })
+        throw error
+      }
     }
   }
 }
