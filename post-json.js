@@ -6,21 +6,23 @@ const { getLogger } = require('iter-duct')
 //   concurrency: 4
 // }
 
-function postJSONData ({ url, concurrency, payload, method, headers }) {
+function postJSONData ({ url, concurrency, payload, method, headers, onErrorContinue }) {
   const logger = getLogger()
   concurrency = concurrency || 4
   return function (iterable) {
     return asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
-      try {
-        const currentPayload = valueOrFunc(obj, payload)
-        const currentHeaders = valueOrFunc(obj, headers)
-        logger.log({ level: 'debug', message: `post json to ${currentUrl}`, item: obj })
-        return postJSON(currentUrl, currentPayload, method, currentHeaders)
-      } catch (error) {
-        logger.log({ level: 'error', message: `error post json to ${currentUrl}`, error, item: obj })
-        throw error
-      }
+      const currentPayload = valueOrFunc(obj, payload)
+      const currentHeaders = valueOrFunc(obj, headers)
+      logger.log({ level: 'debug', message: `post json to ${currentUrl}`, item: obj })
+      return postJSON(currentUrl, currentPayload, method, currentHeaders)
+        .catch((error) => {
+          logger.log({ level: 'error', message: `error post json to ${currentUrl}`, error, item: obj })
+          if (onErrorContinue) {
+            return Promise.resolve(null)
+          }
+          return Promise.reject(error)
+        })
     }, iterable)
   }
 }
