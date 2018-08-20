@@ -10,6 +10,7 @@ function postFormData ({ url, concurrency, formData, method, headers, onErrorCon
   const logger = getLogger()
   concurrency = concurrency || 4
   return function (iterable) {
+    iterable = iterable || [{}]
     return asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const currentFormData = valueOrFunc(obj, formData)

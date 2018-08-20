@@ -10,6 +10,7 @@ function postJSONData ({ url, concurrency, payload, method, headers, onErrorCont
   const logger = getLogger()
   concurrency = concurrency || 4
   return function (iterable) {
+    iterable = iterable || [{}]
     return asyncMapBatch(concurrency, async (obj) => {
       const currentUrl = valueOrFunc(obj, url)
       const currentPayload = valueOrFunc(obj, payload)
